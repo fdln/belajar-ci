@@ -1,0 +1,1 @@
+ALTER TABLE product MODIFY id VARCHAR (36);

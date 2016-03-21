@@ -13,9 +13,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -50,7 +50,14 @@ public class ProductController {
     @Transactional(readOnly = false)
     public ResponseEntity<Void> create(@RequestBody @Valid Product p, UriComponentsBuilder
             uriBuilder) {
-        productDAO.save(p);
+        try {
+            System.out.println("XXXXXXXXX XXXXXXX XXXXXXXXXX");
+            productDAO.save(p);
+            System.out.println(p.toString());
+        } catch(Exception e) {
+            System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+            e.printStackTrace();
+        }
         URI location = uriBuilder.path("/api/product/{id}").buildAndExpand(p.getId()).toUri();
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(location);
@@ -61,7 +68,7 @@ public class ProductController {
     @ResponseStatus(HttpStatus.OK)
     @Transactional(readOnly = false)
     public void update(@PathVariable("id") String id, @RequestBody @Valid Product p) {
-        if (!productDAO.exists(id)) 
+        if (!productDAO.exists(id))
             throw new DataNotFoundException("No data with the specified id");
 
         p.setId(id);
@@ -72,7 +79,7 @@ public class ProductController {
     @ResponseStatus(HttpStatus.OK)
     @Transactional(readOnly = false)
     public void delete(@PathVariable("id") String id) {
-        if (!productDAO.exists(id)) 
+        if (!productDAO.exists(id))
             throw new DataNotFoundException("No data with the specified id");
 
         productDAO.delete(id);
