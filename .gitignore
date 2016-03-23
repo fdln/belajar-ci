@@ -54,3 +54,10 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+
+# idea
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+*.iml
