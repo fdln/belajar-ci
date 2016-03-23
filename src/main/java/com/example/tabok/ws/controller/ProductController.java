@@ -50,14 +50,7 @@ public class ProductController {
     @Transactional(readOnly = false)
     public ResponseEntity<Void> create(@RequestBody @Valid Product p, UriComponentsBuilder
             uriBuilder) {
-        try {
-            System.out.println("XXXXXXXXX XXXXXXX XXXXXXXXXX");
-            productDAO.save(p);
-            System.out.println(p.toString());
-        } catch(Exception e) {
-            System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-            e.printStackTrace();
-        }
+        productDAO.save(p);
         URI location = uriBuilder.path("/api/product/{id}").buildAndExpand(p.getId()).toUri();
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(location);
