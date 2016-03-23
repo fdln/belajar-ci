@@ -9,5 +9,5 @@ services:
 before_install:
     - mysql -uroot -e "grant all on tabok.* to tabok@localhost identified by 'W3knd1cT4b0Db'"
     - mysql -uroot -e "drop database if exists tabok"
-    - mysql -uroot -e "create database tabokk"
+    - mysql -uroot -e "create database tabok"
 
