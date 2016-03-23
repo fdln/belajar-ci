@@ -11,3 +11,6 @@ before_install:
     - mysql -uroot -e "drop database if exists tabok"
     - mysql -uroot -e "create database tabok"
 
+after_success:
+    - mvn jacoco:report coveralls:report
+    
