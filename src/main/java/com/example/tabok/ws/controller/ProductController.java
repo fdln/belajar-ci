@@ -72,8 +72,9 @@ public class ProductController {
     @ResponseStatus(HttpStatus.OK)
     @Transactional(readOnly = false)
     public void delete(@PathVariable("id") String id) {
-        if (!productDAO.exists(id))
+        if (!productDAO.exists(id)) {
             throw new DataNotFoundException("No data with the specified id");
+        }
 
         productDAO.delete(id);
     }
