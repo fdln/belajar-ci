@@ -13,4 +13,13 @@ before_install:
 
 after_success:
     - mvn jacoco:report coveralls:report
-    
+
+deploy:
+    provider: openshift
+    user: fadhlan.fdln@gmail.ccom
+    password:
+        secure: lutf1g1thub83
+    app: belajar
+    domain: fadhlan
+    on:
+        repo: fdln/belajar-ci
