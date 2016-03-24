@@ -1,25 +1,20 @@
 language: java
-
 jdk:
-    - oraclejdk8
-
+- oraclejdk8
 services:
-    - mysql
-
+- mysql
 before_install:
-    - mysql -uroot -e "grant all on tabok.* to tabok@localhost identified by 'W3knd1cT4b0Db'"
-    - mysql -uroot -e "drop database if exists tabok"
-    - mysql -uroot -e "create database tabok"
-
+- mysql -uroot -e "grant all on tabok.* to tabok@localhost identified by 'W3knd1cT4b0Db'"
+- mysql -uroot -e "drop database if exists tabok"
+- mysql -uroot -e "create database tabok"
 after_success:
-    - mvn jacoco:report coveralls:report
-
+- mvn jacoco:report coveralls:report
 deploy:
-    provider: openshift
-    user: fadhlan.fdln@gmail.ccom
-    password:
-        secure: lutf1g1thub83
-    app: belajar
-    domain: fadhlan
-    on:
-        repo: fdln/belajar-ci
+  provider: openshift
+  user: fadhlan@weekendinc.com
+  password:
+    secure: alCN+dC48cik18e2WIESaOFAkLSdJZveCfG0M/cFPn/TJ9bS9NJzmeo5kFu5a97v9gcpmowYy3Iaj1kAMVFM9IRHyMCKSMTWPB6qLGHQdCZV5o11DYYkuK3Oe21hnHEUxsEAxBzAyitd6kzIlBSDFSjGC4hjs54YY0yqz+UytbQy8yqbciRtwnPareHOZMrr549qJv1PHBH33alKMMo7x/ss2lOQij8lMX1MST8ZQ8FoKqJm0lOJChunyj2+YuSsl4Fr+CPKVFyIojoji+Bufv0465zIOIfKpRvA9luuZyjdc78sSbjvyfsdwdpSDkrJWpTg9/gDggZGRG5IlWJaAI8KjaKW3jS/IwH0t+xS5cSQnju95lA8XqgObcOm0l1KbHatlHAkKxHEEnXZ4hAP0dEAxxI6GyL/nHiuZ9MqcIrTtNb6UUCbTyvD8xadmz80DXS0IE94K6Drybv9Aul/4pfPDW2xrWRT3UD8OR5myY63YOGNrcBZ6CUkpWMrtidT22KgR3QdzKnWZg4apkNgRAX1ZEunXxfvta/at4JQ+ys/loEalU1pRt5EDTAzccYqisBcUiKtQj+7ff2u5mXrDuy8DcaujprKFWQxEW5V0SULmv14Rm/3hTqQbWuW8KIVnLXwL0TyWEf4OWNL4UydzHFbem4hV51707T6GqLPIiI=
+  app: belajar-ci
+  domain: fadhlan
+  on:
+    repo: fdln/belajar-ci
