@@ -4,6 +4,7 @@ import com.example.tabok.ws.dao.ProductDAO;
 import com.example.tabok.ws.entity.Product;
 import com.example.tabok.ws.exception.DataNotFoundException;
 
+import org.omg.CORBA.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -44,6 +45,10 @@ public class ProductController {
             throw new DataNotFoundException("No data with the specified id");
 
         return p;
+    }
+    @RequestMapping(value="/echo", method = RequestMethod.GET)
+    public String echo() {
+        return "Hi World";
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
