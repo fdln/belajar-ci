@@ -46,9 +46,25 @@ public class ProductController {
 
         return p;
     }
+    @RequestMapping(value = "/a/{id}", method = RequestMethod.GET)
+    public Product findByIda(@PathVariable("id") Product p) {
+        if (p == null)
+            throw new DataNotFoundException("No data with the specified id");
+
+        return p;
+    }
     @RequestMapping(value="/echo", method = RequestMethod.GET)
     public String echo() {
         return "Hi World";
+    }
+    @RequestMapping(value="hello", method = RequestMethod.GET)
+    public String hello() {
+        return "HEELLLLLO";
+    }
+
+    @RequestMapping(value="/hi", method = RequestMethod.GET)
+    public String hi() {
+        return "HIIiii";
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
